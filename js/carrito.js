@@ -1,7 +1,6 @@
 let productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
-// COPILOT: Variable para guardar el historial de compras (MODIFICADA POR COPILOT para ser por usuario)
-// Nota: Ahora obtenerHistorialUsuario() se llama directamente en mostrarHistorial()
 let historialCompras = [];
+
 
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
@@ -11,9 +10,8 @@ let botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const contenedorTotal = document.querySelector("#total");
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
-// COPILOT: Selector para el botón de historial (AGREGADO POR COPILOT)
-// Puede eliminarse: SÍ, sin afectar la funcionalidad base del carrito
 const botonHistorial = document.querySelector("#boton-historial");
+
 
 
 function cargarProductosCarrito() {
@@ -113,8 +111,9 @@ function comprarCarrito() {
 
     if (!productosEnCarrito || productosEnCarrito.length === 0) return;
 
-    // Verificar si hay usuario logueado
+
     if (!hayUsuarioLogueado()) {
+
         alert("Debes iniciar sesión para completar la compra.");
         return;
     }

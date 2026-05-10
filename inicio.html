@@ -52,7 +52,6 @@
                     <li><a class="boton-menu boton-carrito" href="./carrito.html">
                         <img src="./img/carrito.png" alt="Carrito" width="20" height="20">
                         Carrito <span id="numerito" class="numerito">0</span></a></li>
-                    <!-- COPILOT: Botón de login/logout (AGREGADO POR COPILOT) -->
                     <li><button id="boton-login" class="boton-menu boton-login">
                         <img src="./img/usuario.png" alt="Login" width="20" height="20">
                         <span id="texto-login">Iniciar Sesión</span></button></li>
@@ -64,7 +63,6 @@
         <main>
             <h2 class="titulo-principal" id="titulo-principal">Todos los Productos</h2>
             <div id="contenedor-productos" class="contenedor-productos">
-                
             </div>
         </main>
 
@@ -76,14 +74,12 @@
             </div>
         </div>
 
-        <!-- COPILOT: Modal de Login/Registro (AGREGADO POR COPILOT) -->
         <div id="modal-auth" class="modal-auth disabled" aria-hidden="true">
             <div class="modal-auth-overlay"></div>
             <div class="modal-auth-contenido">
                 <button id="cerrar-auth" class="cerrar-modal" aria-label="Cerrar">×</button>
                 <h2 id="titulo-auth">Iniciar Sesión</h2>
-                
-                <!-- Pestaña: Login -->
+
                 <div id="panel-login" class="auth-panel active">
                     <form id="form-login">
                         <input type="email" id="email-login" placeholder="Email" required>
@@ -94,7 +90,6 @@
                     <p id="msg-login-error" class="auth-error"></p>
                 </div>
 
-                <!-- Pestaña: Registro -->
                 <div id="panel-registro" class="auth-panel">
                     <form id="form-registro">
                         <input type="email" id="email-registro" placeholder="Email" required>
@@ -114,3 +109,4 @@
     <script src="./js/menu.js"></script>
 </body>
 </html>
+

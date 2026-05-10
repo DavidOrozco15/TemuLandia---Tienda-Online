@@ -14,11 +14,11 @@
 <body>
     <h1>Test Sistema de Autenticación</h1>
     <div id="tests"></div>
-    
+
     <script src="./js/auth.js"></script>
     <script>
         const testsDiv = document.getElementById('tests');
-        
+
         function test(nombre, fn) {
             try {
                 fn();
@@ -29,44 +29,38 @@
                 addTestLog(`✗ ${nombre}: ${e.message}`, false);
             }
         }
-        
+
         function addTestLog(msg, success) {
             const div = document.createElement('div');
             div.className = 'test ' + (success ? 'success' : 'error');
             div.textContent = msg;
             testsDiv.appendChild(div);
         }
-        
-        // Limpiar localStorage antes de tests
+
         localStorage.clear();
-        
-        // Test 1: Registrar usuario
+
         test('Registrar usuario nuevo', () => {
             const resultado = registrarUsuario('test@example.com', '1234');
             if (!resultado.exito) throw new Error(resultado.mensaje);
             console.log('Usuario registrado:', resultado);
         });
-        
-        // Test 2: No permitir email duplicado
+
         test('Rechazar email duplicado', () => {
             const resultado = registrarUsuario('test@example.com', '5678');
             if (resultado.exito) throw new Error('Debería rechazar email duplicado');
         });
-        
-        // Test 3: Login correcto
+
         test('Login con credenciales correctas', () => {
             const resultado = loginUsuario('test@example.com', '1234');
             if (!resultado.exito) throw new Error(resultado.mensaje);
         });
-        
-        // Test 4: Verificar usuario logueado
+
         test('Verificar usuario logueado', () => {
             if (!hayUsuarioLogueado()) throw new Error('Usuario no está logueado');
             const nombre = obtenerNombreUsuario();
             if (nombre !== 'test@example.com') throw new Error('Email incorrecto');
         });
-        
-        // Test 5: Guardar compra de usuario
+
         test('Guardar compra para usuario', () => {
             const compra = {
                 id: Date.now(),
@@ -78,48 +72,40 @@
             const historial = obtenerHistorialUsuario();
             if (!historial || historial.length === 0) throw new Error('Compra no se guardó');
         });
-        
-        // Test 6: Obtener historial del usuario
+
         test('Obtener historial de compras', () => {
             const historial = obtenerHistorialUsuario();
             if (!Array.isArray(historial)) throw new Error('Historial no es un array');
             if (historial.length === 0) throw new Error('Historial vacío');
         });
-        
-        // Test 7: Cerrar sesión
+
         test('Cerrar sesión sin error', () => {
-            // Temporalmente reemplazamos location.href para no redirigir
             const originalLocation = window.location;
             Object.defineProperty(window, 'location', {
                 value: { href: '' },
                 writable: true
             });
-            
-            // Solo limpiamos localStorage manualmente
+
             localStorage.removeItem("usuario-actual");
             localStorage.removeItem("productos-en-carrito");
-            
+
             if (hayUsuarioLogueado()) throw new Error('Usuario sigue logueado');
         });
-        
-        // Test 8: Registrar segundo usuario
+
         test('Registrar segundo usuario', () => {
             const resultado = registrarUsuario('usuario2@example.com', '5678');
             if (!resultado.exito) throw new Error(resultado.mensaje);
         });
-        
-        // Test 9: Verificar historial separado por usuario
+
         test('Historial separado por usuario', () => {
-            // Login como usuario 2
             loginUsuario('usuario2@example.com', '5678');
             const historialUsuario2 = obtenerHistorialUsuario();
-            
-            // Debe estar vacío para usuario 2
             if (historialUsuario2.length > 0) throw new Error('Historial de usuario 2 no debe estar vacío después de login');
         });
-        
+
         console.log('✓ Tests completados');
         addTestLog('✓ Todos los tests completados', true);
     </script>
 </body>
 </html>
+
