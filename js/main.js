@@ -1,4 +1,4 @@
-// PRODUCTOS
+
 async function obtenerProductos() {
     try {
         const respuesta = await fetch("https://fakestoreapi.com/products");
@@ -13,8 +13,9 @@ async function obtenerProductos() {
             descripcion: producto.description,
             categoria: {
                 nombre: producto.category,
-                id: producto.category.toLowerCase().replace(/['\s]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "") // Convertir categoría a un formato de ID
+                id: producto.category.toLowerCase().replace(/['\s]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "")
             },
+
             precio: producto.price
         }));
 
@@ -246,7 +247,7 @@ window.addEventListener('keydown', (e)=>{
     }
 });
 
-// ===== COPILOT: MANEJADORES DE AUTENTICACIÓN (AGREGADO POR COPILOT) =====
+
 const botonLogin = document.querySelector("#boton-login");
 const modalAuth = document.querySelector("#modal-auth");
 const cerrarAuth = document.querySelector("#cerrar-auth");
@@ -307,7 +308,8 @@ if (formLogin) {
             formLogin.reset();
             modalAuth.classList.add("disabled");
             actualizarBotonLogin();
-            location.reload(); // Recargar para actualizar carrito con usuario logueado
+            location.reload();
+
         } else {
             msgError.textContent = resultado.mensaje;
         }
@@ -337,6 +339,7 @@ if (formRegistro) {
             modalAuth.classList.add("disabled");
             actualizarBotonLogin();
             location.reload();
+
         } else {
             msgError.textContent = resultado.mensaje;
         }
